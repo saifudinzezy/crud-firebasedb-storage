@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "885503618684",
+    "firebase_url": "https://simple-app-firestore-f2ff9-default-rtdb.firebaseio.com",
+    "project_id": "simple-app-firestore-f2ff9",
+    "storage_bucket": "simple-app-firestore-f2ff9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885503618684:android:558b3ab199e1eb5b3f63f9",
+        "android_client_info": {
+          "package_name": "com.example.crudstorage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "885503618684-a74q7a41ejlklkt7ounadjqd17mi7dbr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSwiiRu_jVojBi6NQhdg5uE-7N1FD9lRs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "885503618684-a74q7a41ejlklkt7ounadjqd17mi7dbr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885503618684:android:9c9c7c75de6a2aee3f63f9",
+        "android_client_info": {
+          "package_name": "com.example.simpleapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "885503618684-a74q7a41ejlklkt7ounadjqd17mi7dbr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSwiiRu_jVojBi6NQhdg5uE-7N1FD9lRs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "885503618684-a74q7a41ejlklkt7ounadjqd17mi7dbr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885503618684:android:31a50b3ebc422fdd3f63f9",
+        "android_client_info": {
+          "package_name": "edu.uncw.example.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "885503618684-a74q7a41ejlklkt7ounadjqd17mi7dbr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSwiiRu_jVojBi6NQhdg5uE-7N1FD9lRs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "885503618684-a74q7a41ejlklkt7ounadjqd17mi7dbr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
