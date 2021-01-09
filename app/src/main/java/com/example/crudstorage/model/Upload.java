@@ -1,4 +1,4 @@
-package com.example.crudstorage;
+package com.example.crudstorage.model;
 
 public class Upload {
     private String name;

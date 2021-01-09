@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Crud storage</string>
+    <string name="choose_file">Choose file</string>
+    <string name="enter_file_name">Enter file name</string>
+    <string name="upload">upload</string>
+    <string name="show_upload">show upload</string>
 </resources>
