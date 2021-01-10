@@ -1,8 +1,11 @@
 package com.example.crudstorage.model;
 
+import com.google.firebase.database.Exclude;
+
 public class Upload {
     private String name;
     private String imageUrl;
+    private String key;
 
     public Upload() {
     }
@@ -24,6 +27,16 @@ public class Upload {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    @Exclude
+    public String getKey() {
+        return key;
+    }
+
+    @Exclude
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public void setImageUrl(String imageUrl) {

@@ -13,24 +13,29 @@ import android.widget.Toast;
 import com.example.crudstorage.R;
 import com.example.crudstorage.adapter.ImageAdapter;
 import com.example.crudstorage.model.Upload;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ImageActivity extends AppCompatActivity implements ImageAdapter.OnItemClickListener{
+public class ImageActivity extends AppCompatActivity implements ImageAdapter.OnItemClickListener {
     private RecyclerView recyclerView;
     private ImageAdapter adapter;
 
+    private FirebaseStorage firebaseStorage;
     private DatabaseReference databaseReference;
+    private ValueEventListener dbListener;
+
     private List<Upload> uploads;
 
     private ProgressBar progressBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,19 +48,26 @@ public class ImageActivity extends AppCompatActivity implements ImageAdapter.OnI
 
         uploads = new ArrayList<>();
 
+        adapter = new ImageAdapter(ImageActivity.this, uploads);
+        recyclerView.setAdapter(adapter);
+
+        adapter.setOnItemClickListener(ImageActivity.this);
+
+        firebaseStorage = FirebaseStorage.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("uploads");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        dbListener = databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot postSnap : snapshot.getChildren()){
+                uploads.clear();
+
+                for (DataSnapshot postSnap : snapshot.getChildren()) {
                     Upload upload = postSnap.getValue(Upload.class);
+                    //get key from daabase
+                    upload.setKey(postSnap.getKey());
                     uploads.add(upload);
                 }
 
-                adapter = new ImageAdapter(ImageActivity.this, uploads);
-                recyclerView.setAdapter(adapter);
-
-                adapter.setOnItemClickListener(ImageActivity.this);
+                adapter.notifyDataSetChanged();
                 progressBar.setVisibility(View.GONE);
             }
 
@@ -69,7 +81,7 @@ public class ImageActivity extends AppCompatActivity implements ImageAdapter.OnI
 
     @Override
     public void onItemClick(int position) {
-        Toast.makeText(this, "normal clicked : "+position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "normal clicked : " + position, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -79,6 +91,20 @@ public class ImageActivity extends AppCompatActivity implements ImageAdapter.OnI
 
     @Override
     public void onDeleteClicked(int position) {
-        Toast.makeText(this, "deleted", Toast.LENGTH_SHORT).show();
+        Upload selectedItem = uploads.get(position);
+        String selectedKey = selectedItem.getKey();
+
+        //deleted storage
+        StorageReference imageReference = firebaseStorage.getReferenceFromUrl(selectedItem.getImageUrl());
+        imageReference.delete().addOnSuccessListener(aVoid -> {
+          databaseReference.child(selectedKey).removeValue();
+            Toast.makeText(this, "Item deleted", Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        databaseReference.removeEventListener(dbListener);
     }
 }
